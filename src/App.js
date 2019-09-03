@@ -1,11 +1,9 @@
 import React from 'react';
-import Component from './Component';
-import './App.css';
-
+// const teste = require('test-component');
 function App() {
   return (
     <div>
-      <Component label="label" />
+      Teste
     </div>
   );
 }
