@@ -9086,10 +9086,6 @@ terser@^4.1.2:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-"test-component@git+https://github.com/fidellis/test-component.git":
-  version "1.0.0"
-  resolved "git+https://github.com/fidellis/test-component.git#b948e9c302422072f689f20aa0f6e880fd1e95cf"
-
 test-exclude@^5.2.3:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-5.2.3.tgz#c3d3e1e311eb7ee405e092dac10aefd09091eac0"
