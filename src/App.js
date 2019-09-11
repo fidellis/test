@@ -1,11 +1,11 @@
 import React from 'react';
 import Teste from 'test-module';
-const teste = require('test-component');
-function App() {
+// const teste = require('test-component');
+const App = () => {
   return (
     <div>
-      Teste - {teste()}
-      <Teste />
+      Teste   
+    
     </div>
   );
 }
