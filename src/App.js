@@ -1,11 +1,21 @@
 import React from 'react';
-import Teste from 'test-component';
+import './app.scss'
+import DataTable from 'test-component';
 // const teste = require('test-component');
 const App = () => {
   return (
-    <div>
+    <div className="teste">
       Teste 
-      < Teste />
+      < DataTable 
+      rows={[{ a: 'A', b: 'B'}]} 
+      columns={{
+        a: {
+          label: 'AA'
+        },
+        b: {
+          label: 'BB'
+        }
+      }}/>
     </div>
   );
 }
