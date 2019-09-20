@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.scss'
 import DataTable from 'data-table';
-
+//import './data-table.css'
 const columns = {};
 Array(30).fill().forEach((n , i) => {
   columns[i+1] = {
@@ -42,7 +42,7 @@ const rows = Array(10).fill().map((k,i) => {
 const App = () => {
   return (
     <div className="teste">
-      < DataTable 
+      <DataTable 
           rows={rows} 
           columns={columns}
           //width="90%"
