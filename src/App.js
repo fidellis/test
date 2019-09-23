@@ -45,7 +45,7 @@ const App = () => {
           rows={rows} 
           columns={columns}
           width="90%"
-          actions={[<button onClick={() => alert('Teste')}>111111</button>, `${rows.length} registros`]}
+          actions={[{ label: 'Teste'}, `${rows.length} registros`]}
           // maxHeight={500}
           //headerStyle={{ background: 'grey' }}
           //style={{ background: 'grey' }}
