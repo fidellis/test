@@ -1,9 +1,8 @@
 import React from 'react';
-import './app.scss'
-import DataTable from 'data-table';
-//import './data-table.css'
+import { ExportDataTable } from 'data-table';
+
 const columns = {};
-Array(30).fill().forEach((n , i) => {
+Array(10).fill().forEach((n , i) => {
   columns[i+1] = {
     label: `Teste label teste label teste ${i+1}`,
     search: i < 3 ? true : false,
@@ -42,10 +41,11 @@ const rows = Array(10).fill().map((k,i) => {
 const App = () => {
   return (
     <div className="teste">
-      <DataTable 
+      <ExportDataTable 
           rows={rows} 
           columns={columns}
-          //width="90%"
+          width="90%"
+          actions={[<button onClick={() => alert('Teste')}>111111</button>, `${rows.length} registros`]}
           // maxHeight={500}
           //headerStyle={{ background: 'grey' }}
           //style={{ background: 'grey' }}
