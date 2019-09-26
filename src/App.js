@@ -8,7 +8,7 @@ Array(10).fill().forEach((n , i) => {
     search: i < 3 ? true : false,
     //align: i < 3 ? 'center' : 'right',
     type: i >= 3 ? 'NUMBER' : '',
-    cellRenderer: ({ row, columnKey }) => row[columnKey],
+    cellRenderer: ({ row, column }) => row[column.key],
     footer: ({ columnKey, rows }) => columnKey
   }
 });
