@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DataTable from './data-table/DataTable';
+import Form from './form/Form';
 
 const columns = {};
 Array(10).fill().forEach((n , i) => {
@@ -48,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div className="teste">
-        <DataTable
+        {/* <DataTable
           rows={rows}
           columns={columns}
           exportCsv
@@ -56,7 +57,8 @@ class App extends Component {
           title="Teste"
           width="80%"
           footerHeight={50}
-        />
+        /> */}
+        <Form />
         fim
       </div>
     );
