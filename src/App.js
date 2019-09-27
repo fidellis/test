@@ -1,54 +1,111 @@
 import React, { Component } from 'react';
 import DataTable from './data-table/DataTable';
+import { Button, DateInput, NumberInput, Radio, Select, SelectAsync, Switch, TextArea, TextInput } from 'form';
 import Form from './form/Form';
 
 const columns = {};
-Array(10).fill().forEach((n , i) => {
-  columns[i+1] = {
-    label: `Teste label teste label teste ${i+1}`,
-    search: i < 3 ? true : false,
-    //align: i < 3 ? 'center' : 'right',
+Array(10).fill().forEach((n, i) => {
+  columns[i + 1] = {
+    label: `Teste label teste label teste ${i + 1}`,
+    search: i < 3,
+    // align: i < 3 ? 'center' : 'right',
     type: i >= 3 ? 'NUMBER' : '',
     cellRenderer: ({ row, column }) => row[column.key],
-    footer: ({ columnKey, rows }) => columnKey
-  }
+    footer: ({ columnKey, rows }) => columnKey,
+  };
 });
-const rows = Array(10).fill().map((k,i) => {
+const rows = Array(10).fill().map((k, i) => {
   const c = {};
-  Object.keys(columns).forEach(key => {
+  Object.keys(columns).forEach((key) => {
     const column = columns[key];
-    c[key] = `${key} - ${i + 1}`
-  })
+    c[key] = `${key} - ${i + 1}`;
+  });
   return c;
 });
-
-// const columns = {
-//   "1":{
-//     "label":"Teste label teste label teste 1",
-//     "type":"",      
-//     columns:{
-//       "2":{"label":"Teste label teste label teste 2","search":true,"type":""},"3":{"label":"Teste label teste label teste 3","search":true,"type":""}
-//     }
-// },
-//   "4":{"label":"Teste label teste label teste 4","search":true,"type":"NUMBER", style: { fontColor: 'red' }},
-//   // "5":{"label":"Teste label teste label teste 5","search":false,"type":"NUMBER"},
-//   // "6":{"label":"Teste label teste label teste 6","search":false,"type":"NUMBER"},
-//   // "7":{"label":"Teste label teste label teste 7","search":false,"type":"NUMBER"},
-//   // "8":{"label":"Teste label teste label teste 8","search":false,"type":"NUMBER"},
-//   // "9":{"label":"Teste label teste label teste 9","search":false,"type":"NUMBER"},
-//   // "10":{"label":"Teste label teste label teste 10","search":false,"type":"NUMBER"}
-// };
-// const rows = [{"1":"1 - 1","2":"2 - 1","3":"3 - 1","4":"4 - 1","5":"5 - 1","6":"6 - 1","7":"7 - 1","8":"8 - 1","9":"9 - 1","10":"10 - 1"},{"1":"1 - 2","2":"2 - 2","3":"3 - 2","4":"4 - 2","5":"5 - 2","6":"6 - 2","7":"7 - 2","8":"8 - 2","9":"9 - 2","10":"10 - 2"},{"1":"1 - 3","2":"2 - 3","3":"3 - 3","4":"4 - 3","5":"5 - 3","6":"6 - 3","7":"7 - 3","8":"8 - 3","9":"9 - 3","10":"10 - 3"}]
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: {
+        //text: 'teste'
+      },
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(p) {
+    console.log('onSubmit')
+  }
+
+  onChange({ id, value }) {
+    this.setState(({ data }) => ({ data: { ...data, [id]: value } }));
   }
 
   render() {
     return (
       <div className="teste">
+        <Form
+          onSubmit={this.onSubmit}          
+          >
+          
+          <TextInput
+            id="text"
+            label="TextInput"
+            onChange={this.onChange.bind(this)}
+            value={this.state.data.text}
+            //error="erro"
+            required
+          />
+          <DateInput
+            id="date"
+            label="DateInput"
+            onChange={this.onChange.bind(this)}
+            value={this.state.data.date}
+            // required
+          />
+          <NumberInput
+            id="number"
+            label="NumberInput"
+            onChange={this.onChange.bind(this)}
+            value={this.state.data.number}
+          />
+          <Radio
+            id="radio"
+            label="Radio"
+            onChange={this.onChange.bind(this)}
+            value={this.state.data.radio}
+            options={[{
+              label: 'Sim',
+              value: true,
+            }, {
+              label: 'Não',
+              value: false,
+            }]}
+          />
+          <Select
+            id="select"
+            label="Select"
+            onChange={this.onChange.bind(this)}
+            options={[{ value: 1, label: 'Testando' }]}
+            value={this.state.data.select}
+          />
+          <SelectAsync id="selectAsync" label="SelectAsync" />
+          <Switch
+            id="switch"
+            label="Switch"
+            checked={this.state.data.switch}
+            onChange={this.onChange.bind(this)}
+          />
+          <TextArea
+            id="textarea"
+            label="TextArea"
+            onChange={this.onChange.bind(this)}
+            value={this.state.data.textarea}
+          />
+       
+        </Form>
         {/* <DataTable
           rows={rows}
           columns={columns}
@@ -58,8 +115,8 @@ class App extends Component {
           width="80%"
           footerHeight={50}
         /> */}
-        <Form />
-        fim
+
+
       </div>
     );
   }

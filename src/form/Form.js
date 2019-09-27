@@ -1,45 +1,63 @@
 import React, { Component } from 'react';
-import Form from 'form';
+import Form, { Button } from 'form';
 import PropTypes from 'prop-types';
-// import exportIcon from './arrow_downward.svg';
+import { connect } from 'react-redux';
 
-class Table extends Component {
+export const msg = msg => dispatch => dispatch({ type: 'SUCCESS', msg });
+
+class Formulario extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-        filteredRows: props.rows
-    };
+    this.state = {};
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onClickAction = this.onClickAction.bind(this);
   }
+
+  onSubmit(p) {
+    this.setState({ submited: true }, () => (this.state.isValid ? this.props.onSubmit(p) : null));
+  }
+
+  onClickAction({ onClick, ...params }) {
+    onClick({
+      ...params,
+      message: (message, callback) => {
+        if (message) this.props.msg(message);
+        if (callback) callback();
+      } });
+  }
+
   render() {
-    const { columns, title, actions, exportCsv, rowsCount, ...props } = this.props;
-    const { filteredRows } = this.state;
+    const { children, actions, ...props } = this.props;
+    const { isValid, submited } = this.state;
 
     return (
-      
-        <Form>
-            xxxxxxx
-        </Form>
-      
+      <Form
+        {...props}
+        isValid={isValid => this.setState({ isValid })}
+        submited={this.state.submited}
+        actions={[
+          {
+            id: 'submit',
+            label: 'Salvar',
+            onClick: this.onSubmit,
+            disabled: !isValid && submited,
+          },
+        ].concat(actions.map(action => ({ ...action, onClick: () => this.onClickAction(action) })))}
+      >
+        {children}
+      </Form>
+
     );
   }
 }
 
-Table.propTypes = {
-  title: PropTypes.string,
-  actions: PropTypes.array.isRequired,
-  exportCsv: PropTypes.bool,
-  rowsCount: PropTypes.bool,
-};
+Formulario.propTypes = {};
 
-Table.defaultProps = {
-  title: null,
+Formulario.defaultProps = {
   actions: [],
-  exportCsv: false,
-  rowsCount: false,
-  maxHeight: 700,
-  headerStyle: { background: '#1976d2', color: '#FFFFFF' },
-  // headerStyle: { background: '#f8d117', color: '#215197' },
+  width: '100%',
 };
 
-export default Table;
+// export default connect(() => {}, { msg })(Formulario);
+export default Formulario;
