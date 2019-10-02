@@ -50,7 +50,7 @@ class App extends Component {
           onSubmit={this.onSubmit}          
           >
           
-          <TextInput
+          {/* <TextInput
             id="text"
             label="TextInput"
             onChange={this.onChange.bind(this)}
@@ -83,15 +83,16 @@ class App extends Component {
               label: 'Não',
               value: false,
             }]}
-          />
+          /> */}
           <Select
+            isMulti
             id="select"
             label="Select"
             onChange={this.onChange.bind(this)}
-            options={[{ value: 1, label: 'Testando' }]}
+            options={[{ value: 1, label: 'Testando' }, { value: 2, label: 'Testando 2' }, { value: 3, label: 'Testando 3' }]}
             value={this.state.data.select}
           />
-          <SelectAsync id="selectAsync" label="SelectAsync" />
+          {/* <SelectAsync id="selectAsync" label="SelectAsync" />
           <Switch
             id="switch"
             label="Switch"
@@ -103,7 +104,7 @@ class App extends Component {
             label="TextArea"
             onChange={this.onChange.bind(this)}
             value={this.state.data.textarea}
-          />
+          /> */}
        
         </Form>
         {/* <DataTable
